@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="/javascripts/functions.js" type="text/javascript"></script>
+    <script src="/javascripts/index.js" type="text/javascript"></script>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<%
+ if(data.length !=0 )
+ {
+     %>
+<h1>블로거 선택하여 해당 블로그로 이동</h1>
+<select id="selecBloger">
+    <%
+    for(var i = 0; i < data.length; i++)
+    {
+        item = data[i];
+    %>
+
+    <option value="<%= item.id %>"><%= item.id %></option>
+    <%
+    }
+    %>
+</select>
+<input type="button" id="goBlogBtn" value="<-- 블로그로 이동"/>
+<%
+        if ( typeof id !== 'undefined')
+        {
+        %>
+        <a href="/blog/<%= id %>"> 내 블로그로 이동</a><br><br>
+        <a href="/member/logout">로그아웃 </a>
+        <%
+        }
+        else
+        {
+%>
+<h1>로그인하여 블로그 관리 / 회원가입</h1>
+
+<form method="post">
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <td><input type="text" maxlength="50" placeholder="아이디를 입력해 주세요" name="id"/></td>
+        </tr>
+        <tr>
+            <th>패스워드</th>
+            <td><input type="password" maxlength="50" placeholder="패스워드를 입력해 주세요" name="pw"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="로그인" id="btnLogin"/>
+                <input type="button" value="회원가입" onclick="window.location='/member/signup';"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<%
+        }
+%>
+
+<%
+}
+else
+{
+%>
+<h1>로그인하여 블로그 관리 / 회원가입</h1>
+
+<form method="post">
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <td><input type="text" maxlength="50" placeholder="아이디를 입력해 주세요" name="id"/></td>
+        </tr>
+        <tr>
+            <th>패스워드</th>
+            <td><input type="password" maxlength="50" placeholder="패스워드를 입력해 주세요" name="pw"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="로그인" id="btnLogin"/>
+                <input type="button" value="회원가입" onclick="window.location='/member/signup';"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<%
+}
+  %>
+
+
+
+
+
+</body>
+</html>

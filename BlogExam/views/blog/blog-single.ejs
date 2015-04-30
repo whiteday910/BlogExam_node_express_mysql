@@ -1,0 +1,100 @@
+<!-- 첫번째 템플릿 삽입점-->
+<% include template/tmp_header01.ejs %>
+<!-- CSS Page Level -->
+
+<!-- 두번째 템플릿 삽입점-->
+<% include template/tmp_header02.ejs %>
+
+<!-- Content area-->
+<div class="content-area">
+
+    <section class="page-section with-sidebar sidebar-right">
+        <div class="container">
+            <div class="row">
+
+                <!-- Content -->
+                <div class="col-sm-12 content">
+
+                    <article class="post-wrap">
+                        <div class="post-header">
+                            <div class="post-meta"><span class="post-date"><i
+                                            class="fa fa-clock-o"></i> <%= data.row.date_modify %></span> <span class="sep"></span> <i class="fa fa-user"></i> <a href="#"><%= data.row.name %></a> <span class="sep"></span></div>
+                            <h2 class="post-title"><%= data.row.title %></h2>
+                        </div>
+                        <div class="post-media">
+                            <div class="thumbnail do-hover">
+                                <%
+                                if(data.row.imgurl)
+                                {
+                                %>
+                                <img class="img-responsive" src="<%= data.row.imgurl %>" alt=""/>
+                                <%
+                                }
+                                %>
+
+                                <div class="caption">
+                                    <div class="caption-wrapper div-table">
+                                        <div class="caption-inner div-cell">
+                                            <p class="caption-buttons">
+                                                <a href="<%= data.row.imgurl %>" class="btn caption-zoom theone" data-gal="prettyPhoto"><i class="fa fa-search"></i></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-body">
+
+                            <%= data.row.content %>
+
+                        </div>
+
+                    </article>
+                    <!-- /.post-wrap -->
+
+                </div>
+                <!-- /.content -->
+                <!-- /Content -->
+            </div>
+            <br/>
+            <%
+            if(isSessionSet && !isLoginAndLookOtherBloger)
+            {
+            %>
+            <form action="/blog/<%= id %>/update/<%= data.row.num %>/<%= page %>" method="get">
+            </form>
+
+            <div class="form-group">
+                <button class="btn btn-default" id="btnUpdate">Edit This Post</button>
+                <button class="btn btn-default" id="btnDelete">Delete This Post</button>
+            </div>
+            <%
+            }
+            %>
+        </div>
+    </section>
+</div><!-- /.content-area -->
+<!-- /Content area-->
+<!-- 하단 템플릿 삽입부 -->
+<% include template/tmp_footer01.ejs %>
+<!-- JS Page Level -->
+
+<script src="/assets/js/theme.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        theme.init();
+        $("#btnDelete").click(function(e)
+        {
+            $("form").attr('action','/blog/<%=id%>/delete/<%=data.row.num%>/<%=page%>');
+            $("form").attr('method','post');
+            $("form").submit();
+        });
+        $("#btnUpdate").click(function(e)
+        {
+            $("form").submit();
+        });
+    });
+</script>
+
+</body>
+</html>

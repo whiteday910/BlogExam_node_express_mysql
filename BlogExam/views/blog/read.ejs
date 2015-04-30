@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="/javascripts/functions.js" type="text/javascript"></script>
+    <script src="/javascripts/blog/read.js" type="text/javascript"></script>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form action="/blog/<%=id%>/update/<%=data.row.num%>/<%=page%>" method="get">
+    <table border="1">
+        <tr>
+            <th>제목</th>
+            <td><%=data.row.title%></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea cols="30" rows="10" readonly><%=data.row.content%></textarea></td>
+        </tr>
+        <tr>
+            <th>만든 날짜</th>
+            <td><%=data.row.date_create%></td>
+        </tr>
+        <tr>
+            <th>최종 수정 날짜</th>
+            <td><%=data.row.date_modify%></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <%
+                 if(isSessionSet)
+                 {
+                    if(!isLoginAndLookOtherBloger)
+                    {
+                %>
+                <input type="submit" value="글 수정" id="btnUpdate"/>
+                <input type="button" value="글 삭제" id="btnDelere"/>
+                <%
+                    }
+                 }
+                  %>
+
+                <input type="button" value="리스트로 돌아가기" id="btnBackList"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    $("#btnBackList").click(function(e)
+    {
+        location.href="/blog/<%=id%>/list/<%=page%>";
+    });
+
+    $("#btnDelere").click(function(e)
+    {
+        $("form").attr('action','/blog/<%=id%>/delete/<%=data.row.num%>/<%=page%>');
+        $("form").attr('method','post');
+        $("form").submit();
+    });
+
+</script>
+</body>
+</html>

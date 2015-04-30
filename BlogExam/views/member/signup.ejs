@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="/javascripts/functions.js" type="text/javascript"></script>
+    <script src="/javascripts/member/member.js" type="text/javascript"></script>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form method="post" id="signupForm">
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <td><input type="text" maxlength="50" placeholder="아이디를 입력해 주세요" name="id"/></td>
+        </tr>
+        <tr>
+            <th>패스워드</th>
+            <td><input type="password" maxlength="50" placeholder="패스워드를 입력해 주세요" name="pw"/></td>
+        </tr>
+        <tr>
+            <th>패스워드 재입력</th>
+            <td><input type="password" maxlength="50" placeholder="패스워드를 재입력해 주세요" name="pw_retype"/></td>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <td><input type="text" maxlength="50" placeholder="이름을 입력해 주세요" name="name"/></td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td><input type="email" maxlength="50" placeholder="이메일을 입력해 주세요" name="email"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="회원가입"/>
+                <input type="reset" value="취소"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
